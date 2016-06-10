@@ -1,5 +1,5 @@
 # Minute to Hour Chrome Extension
-##### Chrome Extension for [kevingimbel.com/minute-to-hour](kevingimbel.com/minute-to-hour/)
+##### Chrome Extension for [kevingimbel.com/minute-to-hour](http://kevingimbel.com/minute-to-hour/)
 
 This version is implemented using [KnockoutJS](http://knockoutjs.com/) instead of ReactJS.
 
