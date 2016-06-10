@@ -1,0 +1,129 @@
+<html>
+<head>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 1em;
+}
+
+body {
+  font: 1rem/1.3 Arial, Helvetica, sans-serif;
+  color: #212121;
+  background: #ededed;
+  min-width: 340px;
+  min-height: 300px;
+}
+
+.info {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  padding-right: .25rem;
+  font-size: .85rem;
+}
+
+h6 {
+  font-size: .95rem;
+  margin: 1.5rem 0 .5rem 0;
+  padding-bottom: .25rem;
+  border-bottom: 1px solid #fff;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.surface {
+  background: #2196F3;
+  border-top: .25rem solid #E91E63;
+  box-shadow: 0 2px 4px #212121;
+  color: #fff;
+  text-shadow: 0.02em .02em 0 #333;
+  padding: 2rem;
+  font-size: 2em;
+  text-align: center;
+}
+
+.output {
+  margin-bottom: 1.25rem;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: -webkit-transform cubic-bezier(0.6, 1.6, 0, 1) 0.6s;
+  transition: -webkit-transform cubic-bezier(0.6, 1.6, 0, 1) 0.6s;
+  transition: transform cubic-bezier(0.6, 1.6, 0, 1) 0.6s;
+  transition: transform cubic-bezier(0.6, 1.6, 0, 1) 0.6s, -webkit-transform cubic-bezier(0.6, 1.6, 0, 1) 0.6s;
+}
+
+input {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  text-align: center;
+}
+input:focus {
+  outline: none;
+}
+
+.animation {
+  transform: scale(1.2);
+}
+
+.list--bare {
+  list-style: none;
+  font-size: .8rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.list--bare li {
+  display: inline-block;
+  background: #f1f1f1;
+  border: 1px solid #ddd;
+  color: #323232;
+  text-shadow: none;
+  padding: .25rem;
+  margin: .25rem;
+}
+
+li:active {
+  background: #E91E63;
+  border: 1px solid #E91E63;
+  color: #fff;
+}
+
+.list--bare li:hover {
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+  <div class="center surface">
+    <div class="output" data-bind="text: timeInHours"></div>
+    <input type="number" data-bind="value: timeInMinutes, valueUpdate: 'afterkeydown'" placeholder="Minutes" />
+    <h6 id="heading_common_times">Common times</h6>
+    <ul aria-described-by="heading_common_times" class="list--bare" data-bind="foreach: commonTimes">
+      <li role="button" data-bind="text: label, click: $parent.displayCommonTime, attr: { 'aria-label': label}"></li>
+    </ul>
+  </div>
+  <script src="/assets/javascript/knockout.min.js"></script>
+  <script src="/assets/javascript/mth.js"></script>
+</body>
+</html>
