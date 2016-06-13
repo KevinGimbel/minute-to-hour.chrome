@@ -8,7 +8,7 @@
 }
 
 :root {
-  font-size: 1em;
+  font-size: 14px;
 }
 
 body {
@@ -52,6 +52,8 @@ h6 {
   padding: 2rem;
   font-size: 2em;
   text-align: center;
+  width: 300px;
+  height: 280px;
 }
 
 .output {
@@ -112,18 +114,74 @@ li:active {
 .list--bare li:hover {
   cursor: pointer;
 }
+
+
+#nav {
+  margin-top: 1rem;
+}
+
+.controls {
+  display: flex;
+  display: -webkit-flex;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.controls a {
+  text-decoration: none;
+  color: #E91E63;
+}
+
+.control-item,
+.controls li {
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.flex-child {
+    width: 100%;
+}
 </style>
 </head>
 <body>
-  <div class="center surface">
-    <div class="output" data-bind="text: timeInHours"></div>
-    <input type="number" data-bind="value: timeInMinutes, valueUpdate: 'afterkeydown'" placeholder="Minutes" />
-    <h6 id="heading_common_times">Common times</h6>
-    <ul aria-described-by="heading_common_times" class="list--bare" data-bind="foreach: commonTimes">
-      <li role="button" data-bind="text: label, click: $parent.displayCommonTime, attr: { 'aria-label': label}"></li>
-    </ul>
+  <div class="center  surface" data-bind="with: minuteToHour">
+    <div data-view="converter">
+      <div class="output" data-bind="text: timeInHours"></div>
+      <input type="number" data-bind="value: timeInMinutes, valueUpdate: 'afterkeydown'" placeholder="Minutes" />
+      <h6 id="heading_common_times">Common times</h6>
+      <ul aria-described-by="heading_common_times" class="list--bare" data-bind="foreach: commonTimes">
+        <li role="button" data-bind="text: label, click: $parent.displayCommonTime, attr: { 'aria-label': label}"></li>
+      </ul>
+    </div>
+
+    <div data-view="calculator">
+      <p class="text--center" data-bind="text: timeDifference"></p>
+    <div class="flex flex--column">
+      <div class="flex-child">
+        <label for="startTime" class="label--small">Start Time</label>
+        <input type="text" id="startTime" data-bind="value: startTime, valueUpdate: 'afterkeydown'"/>
+      </div>
+      <div class="flex-child">
+        <label for="endTime" class="label--small">End Time</label>
+        <input type="text" id="endTime" data-bind="value: endTime, valueUpdate: 'afterkeydown'"/>
+       </div>
+     </div>
+    </div>
+
+    <nav id="nav"></nav>
   </div>
   <script src="/assets/javascript/knockout.min.js"></script>
-  <script src="/assets/javascript/mth.js"></script>
+  <script src="/assets/javascript/viewswitcher.js"></script>
+  <script src="/assets/javascript/minute-to-hour.knockout.js"></script>
+  <script src="/assets/javascript/init.js"></script>
 </body>
 </html>
